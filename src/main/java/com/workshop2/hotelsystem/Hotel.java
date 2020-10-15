@@ -26,7 +26,4 @@ public class Hotel {
 		this.regularWeekDay = regularWeekDay;
 	}
 
-	public String toString() {
-		return "Hotel Name : " + hotelName + ", Normal Week day Rate : " + regularWeekDay;
-	}
 }
