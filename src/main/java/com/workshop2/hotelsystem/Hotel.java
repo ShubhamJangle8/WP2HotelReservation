@@ -2,24 +2,18 @@ package com.workshop2.hotelsystem;
 
 public class Hotel {
 	private String name;
-	private int regularWeekday = 0;
-	private int regularWeekend = 0;
+	private int regularWeekDayRate = 0;
+	private int regularWeekEndRate = 0;
 
-	/**
-	 * can initiate only name and weekday for regular customers
-	 */
 	public Hotel(String name, int regularWeekday) {
 		this.name = name;
-		this.regularWeekday = regularWeekday;
+		this.regularWeekDayRate = regularWeekday;
 	}
 
-	/**
-	 * can initiate name weekday and weekend for regular customers
-	 */
 	public Hotel(String name, int regularWeekday, int regularWeekend) {
 		this.name = name;
-		this.regularWeekday = regularWeekday;
-		this.regularWeekend = regularWeekend;
+		this.regularWeekDayRate = regularWeekday;
+		this.regularWeekEndRate = regularWeekend;
 	}
 
 	public String getName() {
@@ -30,20 +24,20 @@ public class Hotel {
 		this.name = name;
 	}
 
-	public int getRegularWeekday() {
-		return regularWeekday;
+	public int getRegularWeekDayRate() {
+		return regularWeekDayRate;
 	}
 
-	public void setRegularWeekday(int regularWeekday) {
-		this.regularWeekday = regularWeekday;
+	public void setRegularWeekDayRate(int regularWeekday) {
+		this.regularWeekDayRate = regularWeekday;
 	}
 
-	public int getRegularWeekend() {
-		return regularWeekend;
+	public int getRegularWeekEndRate() {
+		return regularWeekEndRate;
 	}
 
-	public void setRegularWeekend(int regularWeekend) {
-		this.regularWeekend = regularWeekend;
+	public void setRegularWeekEndRate(int regularWeekend) {
+		this.regularWeekEndRate = regularWeekend;
 	}
 
 }

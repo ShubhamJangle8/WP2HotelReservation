@@ -16,8 +16,14 @@ public class HotelReservation {
 	/**
 	 * Adding new hotel to list of hotels
 	 */
-	public boolean addHotel(String name, int regularWeekday) {
-		Hotel hotel = new Hotel(name, regularWeekday);
+	public boolean addHotel(String name, int regularWeekDayRate) {
+		Hotel hotel = new Hotel(name, regularWeekDayRate);
+		hotelMap.put(name, hotel);
+		return true;
+	}
+	
+	public boolean addHotel(String name, int regularWeekDayRate, int regularWeekEndRate) {
+		Hotel hotel = new Hotel(name, regularWeekDayRate, regularWeekEndRate);
 		hotelMap.put(name, hotel);
 		return true;
 	}
@@ -29,8 +35,8 @@ public class HotelReservation {
 	public void printHotels() {
 		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
 			System.out.println("Hotel Name : " + entry.getKey());
-			System.out.println(
-					"Rate for regular customer for weekday : " + entry.getValue().getRegularWeekday() + " / day\n");
+			System.out.println("Rate for regular customer for weekday : " + entry.getValue().getRegularWeekDayRate()
+					+ " / day\n" + "Rate for regular customer for weekEnd : " + entry.getValue().getRegularWeekEndRate() + " / day\n");
 		}
 	}
 
@@ -57,7 +63,7 @@ public class HotelReservation {
 		HashMap<Integer, ArrayList<Hotel>> rentMap = new HashMap<>();
 		int numOfDays = numberOfDays(fromDate, toDate);
 		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
-			int rent = entry.getValue().getRegularWeekday() * numOfDays;
+			int rent = entry.getValue().getRegularWeekDayRate() * numOfDays;
 			rentMap.computeIfAbsent(rent, k -> new ArrayList<>()).add(entry.getValue());
 		}
 		return rentMap;
