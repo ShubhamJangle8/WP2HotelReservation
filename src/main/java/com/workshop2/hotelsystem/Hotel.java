@@ -1,29 +1,49 @@
 package com.workshop2.hotelsystem;
 
 public class Hotel {
-	private String hotelName;
-	private int regularWeekDay;
+	private String name;
+	private int regularWeekday = 0;
+	private int regularWeekend = 0;
 
-	public Hotel(String hotelName, int regularWeekDay) {
-		super();
-		this.hotelName = hotelName;
-		this.regularWeekDay = regularWeekDay;
+	/**
+	 * can initiate only name and weekday for regular customers
+	 */
+	public Hotel(String name, int regularWeekday) {
+		this.name = name;
+		this.regularWeekday = regularWeekday;
 	}
 
-	public String getHotelName() {
-		return hotelName;
+	/**
+	 * can initiate name weekday and weekend for regular customers
+	 */
+	public Hotel(String name, int regularWeekday, int regularWeekend) {
+		this.name = name;
+		this.regularWeekday = regularWeekday;
+		this.regularWeekend = regularWeekend;
 	}
 
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
+	public String getName() {
+		return name;
 	}
 
-	public int getRegularWeekDayRate() {
-		return regularWeekDay;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setRegularWeekDayRate(int regularWeekDay) {
-		this.regularWeekDay = regularWeekDay;
+	public int getRegularWeekday() {
+		return regularWeekday;
+	}
+
+	public void setRegularWeekday(int regularWeekday) {
+		this.regularWeekday = regularWeekday;
+	}
+
+	public int getRegularWeekend() {
+		return regularWeekend;
+	}
+
+	public void setRegularWeekend(int regularWeekend) {
+		this.regularWeekend = regularWeekend;
 	}
 
 }
