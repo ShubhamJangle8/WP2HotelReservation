@@ -43,5 +43,25 @@ class HotelReservationTest {
 		System.out.println("Cheapest Hotel for multiple days using WeekDayRate : ");
 		assertEquals("Lakewood", hotelReservation.findCheapestHotel("01 Sep 2020", "11 Sep 2020"));
 	}
+	
+	@Test
+	void WhenCheapestMethodCalledForWeekEndAdded_ShouldReturn_nameOfHotelForSingleDay() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 160, 60));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150));
+		System.out.println("Cheapest Hotel for a single day using additional WeekEndRate : ");
+		assertEquals("Lakewood", hotelReservation.findCheapestHotel("11 Sep 2020", "12 Sep 2020"));
+	}
+	
+	@Test
+	void WhenCheapestMethodCalledForWeekEndAdded_ShouldReturn_nameOfHotelForMultipleDays() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 160, 60));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150));
+		System.out.println("Cheapest Hotel for multiple days using additional WeekEndRate : ");
+		assertEquals("Lakewood", hotelReservation.findCheapestHotel("01 Sep 2020", "11 Sep 2020"));
+	}
 
 }
