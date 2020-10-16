@@ -29,7 +29,7 @@ public class HotelReservation {
 		hotelMap.put(name, hotel);
 		return true;
 	}
-	
+
 	public boolean addHotel(String name, int regularWeekDayRate, int regularWeekEndRate, int rating) {
 		Hotel hotel = new Hotel(name, regularWeekDayRate, regularWeekEndRate, rating);
 		hotelMap.put(name, hotel);
@@ -50,7 +50,7 @@ public class HotelReservation {
 	}
 
 	/**
-	 * returns cheapest hotel for given date range
+	 * find cheap hotel for given date range
 	 */
 	public String findCheapestHotel(String fromDate, String toDate) {
 		Map<Integer, ArrayList<Hotel>> rentMap = createRentMap(fromDate, toDate);
@@ -59,9 +59,37 @@ public class HotelReservation {
 			if (entry.getKey() < minimumRent)
 				minimumRent = entry.getKey();
 		}
+		ArrayList<Hotel> cheapestHotels = rentMap.get(minimumRent);
+		for(Hotel hotel : cheapestHotels) {
+			System.out.println(hotel.getName() + ", Rating:"
+					+ hotel.getRating() + " and Total Rates: $" + minimumRent + "\n");
+		}
+		return rentMap.get(minimumRent).get(0).getName();
+	}
 
-		System.out.println("Cheapest Hotel : " + rentMap.get(minimumRent).get(0).getName() + "  Total Rent : "
-				+ minimumRent + "\n");
+	/**
+	 * finding cheap for best rated
+	 * 
+	 * @param fromDate
+	 * @param toDate
+	 * @return
+	 */
+	public String findCheapestBestRatedHotel(String fromDate, String toDate) {
+		Map<Integer, ArrayList<Hotel>> rentMap = createRentMap(fromDate, toDate);
+		int minimumRent = Integer.MAX_VALUE;
+		for (Map.Entry<Integer, ArrayList<Hotel>> entry : rentMap.entrySet()) {
+			if (entry.getKey() < minimumRent)
+				minimumRent = entry.getKey();
+		}
+		ArrayList<Hotel> cheapestHotels = rentMap.get(minimumRent);
+		int rating = 0;
+		for (Hotel hotel : cheapestHotels) {
+			if (hotel.getRating() > rating) {
+				rating = hotel.getRating();
+			}
+		}
+		System.out.println(rentMap.get(minimumRent).get(0).getName() + ", Rating:"
+				+ rentMap.get(minimumRent).get(0).getRating() + " and Total Rates: $" + minimumRent + "\n");
 		return rentMap.get(minimumRent).get(0).getName();
 	}
 
@@ -91,7 +119,7 @@ public class HotelReservation {
 		int numOfweekdays = 0;
 		int numOfWeekends = 0;
 		for (LocalDate date = from; date.isBefore(to.plusDays(1)); date = date.plusDays(1)) {
-			DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK)); 
+			DayOfWeek day = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK));
 			switch (day) {
 			case SATURDAY:
 				numOfWeekends++;
