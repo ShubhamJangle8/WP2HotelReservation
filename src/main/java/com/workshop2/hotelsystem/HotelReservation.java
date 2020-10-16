@@ -29,6 +29,12 @@ public class HotelReservation {
 		hotelMap.put(name, hotel);
 		return true;
 	}
+	
+	public boolean addHotel(String name, int regularWeekDayRate, int regularWeekEndRate, int rating) {
+		Hotel hotel = new Hotel(name, regularWeekDayRate, regularWeekEndRate, rating);
+		hotelMap.put(name, hotel);
+		return true;
+	}
 
 	/**
 	 * Printing all hotels and rates present in the list
@@ -39,7 +45,7 @@ public class HotelReservation {
 			System.out.println("Hotel Name : " + entry.getKey());
 			System.out.println("Rate for regular customer for weekday : " + entry.getValue().getRegularWeekDayRate()
 					+ " / day\n" + "Rate for regular customer for weekEnd : " + entry.getValue().getRegularWeekEndRate()
-					+ " / day\n");
+					+ " / day\n" + "Rating for the Hotel : " + entry.getValue().getRating() + "\n");
 		}
 	}
 

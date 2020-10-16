@@ -25,6 +25,15 @@ class HotelReservationTest {
 	}
 	
 	@Test
+	void WhenNewHotelAddedWithRating_ShouldReturn_true() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90, 3));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 160, 60, 4));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5));
+		hotelReservation.printHotels();
+	}
+	
+	@Test
 	void WhenCheapestMethodCalled_ShouldReturn_nameOfHotelForSingleDay() {
 		HotelReservation hotelReservation = new HotelReservation();
 		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90));

@@ -2,8 +2,9 @@ package com.workshop2.hotelsystem;
 
 public class Hotel {
 	private String name;
-	private int regularWeekDayRate = 0;
-	private int regularWeekEndRate = 0;
+	private int regularWeekDayRate;
+	private int regularWeekEndRate;
+	private int rating;
 
 	public Hotel(String name, int regularWeekday) {
 		this.name = name;
@@ -11,6 +12,12 @@ public class Hotel {
 	}
 
 	public Hotel(String name, int regularWeekday, int regularWeekend) {
+		this.name = name;
+		this.regularWeekDayRate = regularWeekday;
+		this.regularWeekEndRate = regularWeekend;
+	}
+	
+	public Hotel(String name, int regularWeekday, int regularWeekend, int rating) {
 		this.name = name;
 		this.regularWeekDayRate = regularWeekday;
 		this.regularWeekEndRate = regularWeekend;
@@ -38,6 +45,14 @@ public class Hotel {
 
 	public void setRegularWeekEndRate(int regularWeekend) {
 		this.regularWeekEndRate = regularWeekend;
+	}
+	
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }
