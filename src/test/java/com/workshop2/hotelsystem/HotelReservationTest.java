@@ -85,7 +85,7 @@ class HotelReservationTest {
 		System.out.println("8 Cheapest Hotel for multiple days using additional WeekEndRate : ");
 		assertEquals("Lakewood", hotelReservation.findCheapestHotel("01 Sep 2020", "11 Sep 2020"));
 	}
-//	UC6
+	//	UC6
 	@Test
 	void WhenCheapestMethodCalledForRatings_ShouldReturn_nameOfHotelForSingleDayAllDay() {
 		HotelReservation hotelReservation = new HotelReservation();
@@ -95,7 +95,7 @@ class HotelReservationTest {
 		System.out.println("9 Cheapest Hotel for multiple days using additional ratings : ");
 		assertEquals("Bridgewood", hotelReservation.findCheapestBestRatedHotel("11 Sep 2020", "12 Sep 2020"));
 	}
-	//UC6
+	
 	@Test
 	void WhenCheapestMethodCalledForRatings_ShouldReturn_nameOfHotelForSingleDayWeekDay() {
 		HotelReservation hotelReservation = new HotelReservation();
@@ -104,6 +104,26 @@ class HotelReservationTest {
 		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5));
 		System.out.println("10 Cheapest Hotel for multiple days using additional ratings : ");
 		assertEquals("Lakewood", hotelReservation.findCheapestBestRatedHotel("10 Sep 2020", "11 Sep 2020"));
+	}
+	//UC7
+	@Test
+	void WhenHotelsAddedForFindingBestRatedHotel_ShouldReturn_TrueWeekDay() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90, 3));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 150, 50, 4));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5));
+		System.out.println("11 Best Rated Hotel For this Date Range : ");
+		assertEquals("Ridgewood", hotelReservation.bestRatedHotelForRange("10 Sep 2020", "11 Sep 2020"));
+	}
+	
+	@Test
+	void WhenHotelsAddedForFindingBestRatedHotel_ShouldReturn_TrueAllDay() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90, 3));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 150, 50, 4));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5));
+		System.out.println("12 Best Rated Hotel For this Date Range : ");
+		assertEquals("Ridgewood", hotelReservation.bestRatedHotelForRange("11 Sep 2020", "12 Sep 2020"));
 	}
 
 }

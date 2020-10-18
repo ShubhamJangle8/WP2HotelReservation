@@ -92,6 +92,36 @@ public class HotelReservation {
 				+ rentMap.get(minimumRent).get(0).getRating() + " and Total Rates: $" + minimumRent + "\n");
 		return rentMap.get(minimumRent).get(0).getName();
 	}
+	
+	public int calculateRent(String fromDate, String toDate, int weekDayRate, int weekEndRate) {
+		int[] numOfDays = numberOfDays(fromDate, toDate);
+		int weekdayRent = weekDayRate * numOfDays[0];
+		int weekendRent = weekEndRate * numOfDays[1];
+		int totalRent = weekdayRent + weekendRent;
+		return totalRent;
+	}
+	
+	/**
+	 * find best Rated hotel for a date range
+	 * @param fromDate
+	 * @param toDate
+	 * @return
+	 */
+	public String bestRatedHotelForRange(String fromDate, String toDate) {
+		int rent = 0;
+		String bestHotelRated = "";
+		int rating = 0;
+		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
+			if(entry.getValue().getRating() > rating) {
+				rating = entry.getValue().getRating();
+				bestHotelRated = entry.getKey();
+				rent = calculateRent(fromDate, toDate, entry.getValue().getRegularWeekDayRate(),
+						entry.getValue().getRegularWeekEndRate());
+			}
+		}
+		System.out.println(bestHotelRated + " & Total Rates $" + rent + "\n");
+		return bestHotelRated;
+	}
 
 	/**
 	 * creates a map having rent as key and list of hotels as value
