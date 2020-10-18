@@ -36,6 +36,14 @@ public class HotelReservation {
 		return true;
 	}
 
+	public boolean addHotel(String name, int regularWeekDayRate, int regularWeekEndRate, int rating,
+			int rewardsWeekDayRate, int rewardsWeekEndRate) {
+		Hotel hotel = new Hotel(name, regularWeekDayRate, regularWeekEndRate, rating, rewardsWeekDayRate,
+				rewardsWeekEndRate);
+		hotelMap.put(name, hotel);
+		return true;
+	}
+
 	/**
 	 * Printing all hotels and rates present in the list
 	 * 
@@ -45,7 +53,9 @@ public class HotelReservation {
 			System.out.println("Hotel Name : " + entry.getKey());
 			System.out.println("Rate for regular customer for weekday : " + entry.getValue().getRegularWeekDayRate()
 					+ " / day\n" + "Rate for regular customer for weekEnd : " + entry.getValue().getRegularWeekEndRate()
-					+ " / day\n" + "Rating for the Hotel : " + entry.getValue().getRating() + "\n");
+					+ " / day\n" + "Rating for the Hotel : " + entry.getValue().getRating() + "\n"
+					+ "Rate for the rewards customer on weekdays : " + entry.getValue().getRewardsWeekDayRate() + "\n"
+					+ "Rate for the rewards customer on weekends : " + entry.getValue().getRewardsWeekEndRate() + "\n");
 		}
 	}
 
@@ -60,9 +70,9 @@ public class HotelReservation {
 				minimumRent = entry.getKey();
 		}
 		ArrayList<Hotel> cheapestHotels = rentMap.get(minimumRent);
-		for(Hotel hotel : cheapestHotels) {
-			System.out.println(hotel.getName() + ", Rating:"
-					+ hotel.getRating() + " and Total Rates: $" + minimumRent + "\n");
+		for (Hotel hotel : cheapestHotels) {
+			System.out.println(
+					hotel.getName() + ", Rating:" + hotel.getRating() + " and Total Rates: $" + minimumRent + "\n");
 		}
 		return rentMap.get(minimumRent).get(0).getName();
 	}
@@ -92,7 +102,7 @@ public class HotelReservation {
 				+ rentMap.get(minimumRent).get(0).getRating() + " and Total Rates: $" + minimumRent + "\n");
 		return rentMap.get(minimumRent).get(0).getName();
 	}
-	
+
 	public int calculateRent(String fromDate, String toDate, int weekDayRate, int weekEndRate) {
 		int[] numOfDays = numberOfDays(fromDate, toDate);
 		int weekdayRent = weekDayRate * numOfDays[0];
@@ -100,9 +110,10 @@ public class HotelReservation {
 		int totalRent = weekdayRent + weekendRent;
 		return totalRent;
 	}
-	
+
 	/**
 	 * find best Rated hotel for a date range
+	 * 
 	 * @param fromDate
 	 * @param toDate
 	 * @return
@@ -112,7 +123,7 @@ public class HotelReservation {
 		String bestHotelRated = "";
 		int rating = 0;
 		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
-			if(entry.getValue().getRating() > rating) {
+			if (entry.getValue().getRating() > rating) {
 				rating = entry.getValue().getRating();
 				bestHotelRated = entry.getKey();
 				rent = calculateRent(fromDate, toDate, entry.getValue().getRegularWeekDayRate(),

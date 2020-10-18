@@ -15,7 +15,7 @@ class HotelReservationTest {
 		System.out.println("1");
 		hotelReservation.printHotels();
 	}
-//	UC3
+    //UC3
 	@Test
 	void WhenNewHotelAddedWithWeekEndRate_ShouldReturn_true() {
 		HotelReservation hotelReservation = new HotelReservation();
@@ -25,7 +25,7 @@ class HotelReservationTest {
 		System.out.println("2");
 		hotelReservation.printHotels();
 	}
-//	UC5
+    //UC5
 	@Test
 	void WhenNewHotelAddedWithRating_ShouldReturn_true() {
 		HotelReservation hotelReservation = new HotelReservation();
@@ -33,6 +33,16 @@ class HotelReservationTest {
 		assertTrue(hotelReservation.addHotel("Bridgewood", 160, 60, 4));
 		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5));
 		System.out.println("3");
+		hotelReservation.printHotels();
+	}
+	//UC7
+	@Test
+	void WhenNewHotelAddedWithRewardsCustomerRates_ShouldReturn_true() {
+		HotelReservation hotelReservation = new HotelReservation();
+		assertTrue(hotelReservation.addHotel("Lakewood", 110, 90, 3, 80, 80));
+		assertTrue(hotelReservation.addHotel("Bridgewood", 160, 60, 4, 110, 50));
+		assertTrue(hotelReservation.addHotel("Ridgewood", 220, 150, 5, 100, 50));
+		System.out.println("13");
 		hotelReservation.printHotels();
 	}
 //	UC2
